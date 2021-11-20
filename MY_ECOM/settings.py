@@ -88,14 +88,12 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
-    'djoser',
     'eccomerce',
     'rest_auth',
-    'knox',
 
 ]
 
-CORS_ALLOWED_ORIGINS = [
+CORS_ALLOWED_ORIGINS = ['mike-trade.herokuapp.com',
     'http://localhost:8080'
 ]
 
@@ -211,7 +209,7 @@ CLOUDINARY_STORAGE = {
     'API_SECRET' : environ.get('API_SECRET')
 }
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
+STATICFILES_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
