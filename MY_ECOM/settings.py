@@ -209,6 +209,7 @@ CLOUDINARY_STORAGE = {
     'API_KEY' : environ.get('API_KEY'),
     'API_SECRET' : environ.get('API_SECRET')
 }
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
