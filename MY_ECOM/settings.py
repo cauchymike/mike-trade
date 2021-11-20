@@ -210,8 +210,8 @@ CLOUDINARY_STORAGE = {
     'API_KEY' : environ.get('API_KEY'),
     'API_SECRET' : environ.get('API_SECRET')
 }
-STATIC_ROOT = 'staticfiles'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
