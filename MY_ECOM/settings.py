@@ -56,7 +56,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=72000),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=7200),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': True,
@@ -214,9 +214,9 @@ CLOUDINARY_STORAGE = {
     'API_SECRET' : environ.get('API_SECRET')
 }
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [
+#STATICFILES_DIRS = [
     # os.path.join(os.path.normpath(BASE_DIR), "static"),
-]
+#]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
