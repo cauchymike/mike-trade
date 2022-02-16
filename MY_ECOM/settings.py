@@ -38,9 +38,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'mike-trade.herokuapp.com']
 
 APP_URL = 'http://127.0.0.1:8000'
 
@@ -84,16 +84,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'whitenoise.runserver_nostatic',
     'cloudinary',
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
+    'djoser',
     'eccomerce',
     'rest_auth',
+    'knox',
 
 ]
 
-CORS_ALLOWED_ORIGINS = ['mike-trade.herokuapp.com',
+CORS_ALLOWED_ORIGINS = [
     'http://localhost:8080'
 ]
 
@@ -158,6 +161,7 @@ DATABASES = {
 DATABASES['default'] = dj_database_url.config(
     default= environ.get('CLEARDB_DATABASE_URL'),
 )
+DATABASES['default']['OPTIONS'] = {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"}
 
 
     
@@ -199,6 +203,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
+FILE_CHARSET = 'utf-16'
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
@@ -208,8 +213,11 @@ CLOUDINARY_STORAGE = {
     'API_KEY' : environ.get('API_KEY'),
     'API_SECRET' : environ.get('API_SECRET')
 }
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    # os.path.join(os.path.normpath(BASE_DIR), "static"),
+]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 

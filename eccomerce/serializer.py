@@ -21,6 +21,15 @@ class SellerRegisterSerializer(serializers.ModelSerializer):
         extra_kwargs = {'password': {'write_only': True, 'required': True},
         'emailaddress':{'required': True},
         'firstname':{'required': True}, 'lastname':{'required': True}}
+    def create(self, validated_data):
+        seller = Sellers.objects.create(emailaddress= validated_data['emailaddress'],
+        firstname = validated_data['firstname'],lastname = validated_data['lastname'],
+        password =  make_password(
+                    validated_data['password'], salt=None, hasher='default'),
+        stateofresidence = validated_data["stateofresidence"])
+
+        seller.save()
+        return seller
 
 # Buyers Registeration Serializer
 class BuyerRegisterSerializer(serializers.ModelSerializer):
