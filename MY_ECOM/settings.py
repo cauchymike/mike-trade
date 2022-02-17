@@ -42,7 +42,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'mike-trade.herokuapp.com']
 
-APP_URL = 'http://127.0.0.1:8000'
+APP_URL = 'https://mike-trade.herokuapp.com/'
 
 
 REST_FRAMEWORK = {
