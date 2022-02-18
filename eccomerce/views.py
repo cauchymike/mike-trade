@@ -14,6 +14,7 @@ from django.core.exceptions import ObjectDoesNotExist
 import requests
 import json
 from rest_framework.permissions import IsAuthenticated
+from os import environ
 
 # Sellers Register API
 class RegisterAPI(generics.CreateAPIView):
@@ -219,15 +220,16 @@ class BuyersChooseProduct(APIView):
 
 
 def tokenGenerator():
+    username = environ.get('USERNAME_TOKEN')
+    password = environ.get('PASSWORD_TOKEN')
     headers = {'content-type': "application/json"}
-    params = {"username": "seunmelody", "password": "melody"}
+    params = {"username": username, "password": password}
     url = settings.APP_URL
-    print(url)
     fullurl = f"{url}/api/token/"
     r = requests.post(fullurl, data=params, verify=False)
     print(r)
     record = r.json()
-    print(record)
+    #print(record)
     return record
 
 

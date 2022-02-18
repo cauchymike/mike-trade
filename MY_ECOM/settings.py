@@ -42,7 +42,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'mike-trade.herokuapp.com']
 
-APP_URL = 'https://mike-trade.herokuapp.com/'
+APP_URL = environ.get('APP_URL')
 
 
 REST_FRAMEWORK = {
@@ -148,8 +148,8 @@ DATABASES = {
 
 
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'my_ecom',#database name from heroku
-        'USER': 'root',
+        'NAME': 'ecom_db',#database name from heroku
+        'USER': 'wajesmart',
         'PASSWORD': environ.get('PASSWORD'),
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
@@ -158,10 +158,10 @@ DATABASES = {
     }
 }
 
-DATABASES['default'] = dj_database_url.config(
-    default= environ.get('CLEARDB_DATABASE_URL'),
-)
-DATABASES['default']['OPTIONS'] = {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"}
+# DATABASES['default'] = dj_database_url.config(
+#     default= environ.get('CLEARDB_DATABASE_URL'),
+# )
+# DATABASES['default']['OPTIONS'] = {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"}
 
 
     
