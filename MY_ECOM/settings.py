@@ -158,10 +158,10 @@ DATABASES = {
     }
 }
 
-# DATABASES['default'] = dj_database_url.config(
-#     default= environ.get('CLEARDB_DATABASE_URL'),
-# )
-# DATABASES['default']['OPTIONS'] = {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"}
+DATABASES['default'] = dj_database_url.config(
+    default= environ.get('CLEARDB_DATABASE_URL'),
+)
+DATABASES['default']['OPTIONS'] = {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"}
 
 
     
